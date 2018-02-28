@@ -2,36 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     public Animator anim;
-
+    public static int MP = 5;
+    public static bool playerIsDead = false;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         anim = GetComponent<Animator>();
-	}
+    }
+
+
 
     private void OnTriggerEnter(Collider col)
     {
-        int getHit = 0;
-        while (col.tag == "enemy")
+        if (col.tag == "enemy" && MP >= 0)
         {
-            getHit++;
-            anim.Play("Damage");
-            if (getHit == 5)
-            {
-                getHit = 0;
-                anim.Play("Dead");
-                break;
-            }
+            anim.Play("Dead");
+            playerIsDead = true;
         }
     }
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (Input.GetMouseButtonDown(0))
         {
+            MP--;
             int action = Random.Range(0, 3);
-            if (action==0)
+            if (action == 0)
             {
                 anim.Play("Attack01");
             }
@@ -39,12 +39,22 @@ public class Player : MonoBehaviour {
             {
                 anim.Play("Attack02");
             }
-            if (action == 2)
-            {
-                anim.Play("Jump");
-            }
+            //  if (action == 2)
+            // {
+            //   anim.Play("Jump");
+            //  }
 
         }
 
-	}
+        if (Input.GetKeyDown("space"))
+        {
+            anim.Play("Jump");
+        }
+
+        if (Player.playerIsDead || Player.MP < 0)
+        {
+            anim.Play("Dead");
+        }
+
+    }
 }

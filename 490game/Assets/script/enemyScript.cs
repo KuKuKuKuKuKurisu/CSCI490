@@ -9,20 +9,35 @@ public class enemyScript : MonoBehaviour
     [SerializeField]
     private float randomOffset = 2f;
     // Use this for initialization
+    public Animator anim;
+    private static bool isDead = false;
     void Start()
     {
-
+        anim = GetComponent< Animator > ();
     }
 
     // Update is called once per frame
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Player")
+        if (col.tag == "attack")
         {
-            float randomHeight = UnityEngine.Random.Range(0, randomOffset);
-            transform.position = new Vector3(24 + randomHeight, transform.position.y, transform.position.z);
+            if (Input.GetMouseButtonDown(0))
+            {
+                anim.Play("Death");
+                isDead = true;
+
+            }
+            if (isDead)
+            {
+                if (col.tag == "Player")
+                {
+                    float randomHeight = UnityEngine.Random.Range(0, randomOffset);
+                    transform.position = new Vector3(24 + randomHeight, transform.position.y, transform.position.z);
+                }
+            }
         }
+       
     }
     void Update()
     {

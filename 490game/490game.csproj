@@ -349,6 +349,8 @@
     <Compile Include="Assets\enemy resourse\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\enemy resourse\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\script\enemyScript.cs" />
+    <Compile Include="Assets\script\mainMenu.cs" />
+    <Compile Include="Assets\script\Menu.cs" />
     <Compile Include="Assets\script\moveLeft.cs" />
     <Compile Include="Assets\script\Player.cs" />
     <Compile Include="Assets\SD_Character\Scripts\SampleAnimation.cs" />
