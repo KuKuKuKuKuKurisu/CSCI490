@@ -19,7 +19,7 @@ public class moveLeft : MonoBehaviour {
         if (transform.position.x <= -25)
         {
             float randomHeight = UnityEngine.Random.Range(0, randomOffset);
-            transform.position = new Vector3(25 + randomHeight, transform.position.y, transform.position.z);
+            transform.position = new Vector3(50 + randomHeight, transform.position.y, transform.position.z);
         }
 	}
 }
