@@ -13,6 +13,8 @@ public class enemyScript : MonoBehaviour
     private bool isDead;
     private bool at;
     public static bool dead;
+    private int count=0;
+    private float speedLevel = 1f;
     void Start()
     {
         anim = GetComponent< Animator > ();
@@ -50,7 +52,7 @@ public class enemyScript : MonoBehaviour
     void Update()
     {
         
-        transform.position += Time.deltaTime * speed * Vector3.left;
+        transform.position += Time.deltaTime * speed * Vector3.left*speedLevel;
 
         if (Input.GetMouseButtonDown(0)&&at)
         {
@@ -60,14 +62,31 @@ public class enemyScript : MonoBehaviour
         if (isDead)
         {
             anim.Play("Death");
-            Player.MP++;
+            if (Player.MP == 4)
+            {
+                Player.MP = Player.MP + 1;
+                
+            }
+            else if(Player.MP < 4)
+            {
+                Player.MP = Player.MP + 2;
+                
+            }
+            
+            
             float randomHeight = UnityEngine.Random.Range(0, randomOffset);
             transform.position = new Vector3(35 + randomHeight, transform.position.y, transform.position.z);
             isDead = false;
             at = false;
             dead = false;
+            count++;
         }
-
+        if (count == 5)
+        {
+            speedLevel = speedLevel * 4f;
+            moveLeft.speedlevel = moveLeft.speedlevel * 4f;
+            count = 0;
+        }
         if (transform.position.x <= 0)
         {
             float randomHeight = UnityEngine.Random.Range(0, randomOffset);

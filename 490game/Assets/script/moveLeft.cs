@@ -7,6 +7,7 @@ public class moveLeft : MonoBehaviour {
     private float speed = 1f;
     [SerializeField]
     private float randomOffset = 2f;
+    public static float speedlevel = 1f;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,7 +15,7 @@ public class moveLeft : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position +=Time.deltaTime * speed * Vector3.left;
+		transform.position +=Time.deltaTime * speed * Vector3.left*speedlevel;
 
         if (transform.position.x <= -25)
         {

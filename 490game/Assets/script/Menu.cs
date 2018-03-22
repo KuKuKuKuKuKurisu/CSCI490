@@ -9,6 +9,12 @@ public class Menu : MonoBehaviour {
     public GameObject pauseMenuUI;
     public GameObject pauseButton;
     public GameObject resumeButton;
+
+   
+    public GameObject text;
+   
+    public GameObject text1;
+
     public GameObject restartButton;
     // Update is called once per frame
     void Update () {
@@ -18,6 +24,8 @@ public class Menu : MonoBehaviour {
             Player.playerIsDead = true;
             Pause();
         }
+
+        popUpText();
         
 	}
 
@@ -69,5 +77,26 @@ public class Menu : MonoBehaviour {
     public void Quit()
     {
         Application.Quit();
+    }
+    public void popUpText()
+    {
+        if (Input.GetKeyDown("q"))
+        {
+            
+            int textPosition = UnityEngine.Random.Range(0,2);
+            if (textPosition == 0)
+            {
+                GameObject newText = Instantiate(text, text.transform.position, Quaternion.identity);
+                newText.SetActive(true);
+                Destroy(newText.gameObject,0.3f);
+            }
+            else
+            {
+                GameObject newText = Instantiate(text1, text1.transform.position, Quaternion.identity);
+                newText.SetActive(true);
+                Destroy(newText.gameObject, 0.3f);
+            }
+
+        }
     }
 }

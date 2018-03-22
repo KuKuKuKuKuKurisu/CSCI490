@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (controller.isGrounded)
         {
             verticalVelocity -= gravity * Time.deltaTime;
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour
 
         
 
-        if (Player.playerIsDead || Player.MP < 0)
+        if (Player.playerIsDead || Player.MP <= 0)
         {
             anim.Play("Dead");
         }
