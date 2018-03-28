@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class enemyScript : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 1f;
-    [SerializeField]
-    private float randomOffset = 3f;
+    private Vector3 startPos;
+
+    public static float speed =2f;
+
     // Use this for initialization
     public Animator anim;
     private bool isDead;
     private bool at;
     public static bool dead;
-    private int count=0;
-    private float speedLevel = 1f;
+    public static int kills = 0;
     void Start()
     {
+        startPos = transform.position;
         anim = GetComponent< Animator > ();
         isDead = false;
         at = false;
@@ -52,7 +52,7 @@ public class enemyScript : MonoBehaviour
     void Update()
     {
         
-        transform.position += Time.deltaTime * speed * Vector3.left*speedLevel;
+        transform.position += Time.deltaTime * speed * Vector3.left;
 
         if (Input.GetMouseButtonDown(0)&&at)
         {
@@ -73,24 +73,20 @@ public class enemyScript : MonoBehaviour
                 
             }
             
-            
-            float randomHeight = UnityEngine.Random.Range(0, randomOffset);
-            transform.position = new Vector3(35 + randomHeight, transform.position.y, transform.position.z);
+            transform.position = new Vector3(startPos.x + 25, startPos.y, startPos.z);
+            speed = speed * 1.1f;
+            moveLeft.speed = moveLeft.speed*1.1f;
+            kills++;
             isDead = false;
             at = false;
             dead = false;
-            count++;
+            
         }
-        if (count == 5)
+       
+        if (transform.position.x <= 0|| transform.position.y <= 0)
         {
-            speedLevel = speedLevel * 4f;
-            moveLeft.speedlevel = moveLeft.speedlevel * 4f;
-            count = 0;
-        }
-        if (transform.position.x <= 0)
-        {
-            float randomHeight = UnityEngine.Random.Range(0, randomOffset);
-            transform.position = new Vector3(35 + randomHeight, transform.position.y, transform.position.z);
+
+            transform.position = new Vector3(startPos.x+25, startPos.y , startPos.z);
         }
 
     }
