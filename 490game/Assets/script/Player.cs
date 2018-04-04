@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
             anim.Play("Dead");
             playerIsDead = true;
         }
+        if (col.tag == "deadzone")
+        {
+            anim.Play("Dead");
+            playerIsDead = true;
+        }
     }
     // Update is called once per frame
     void Update()

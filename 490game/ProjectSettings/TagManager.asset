@@ -6,6 +6,11 @@ TagManager:
   tags:
   - enemy
   - attack
+  - daedzonel
+  - deadzoner
+  - energyl
+  - energyr
+  - deadzone
   layers:
   - Default
   - TransparentFX

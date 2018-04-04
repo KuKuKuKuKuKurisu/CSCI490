@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemyScript : MonoBehaviour
 {
     private Vector3 startPos;
-
+    private Quaternion startRot;
     public static float speed =2f;
 
     // Use this for initialization
@@ -17,6 +17,7 @@ public class enemyScript : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
+        startRot = transform.rotation;
         anim = GetComponent< Animator > ();
         isDead = false;
         at = false;
@@ -39,15 +40,37 @@ public class enemyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        
         if (!isDead)
         {
             if (col.tag == "attack")
             {
+                Menu.lorr = Random.Range(0, 2);
                 at = true;
                
             }
         }
-           
+
+        if (Menu.lorr == 1)
+        {
+            if(col.tag == "energyr")
+            {
+                Player.MP--;
+            }
+        }
+        else
+        {
+            if (col.tag == "energyl")
+            {
+                Player.MP--;
+            }
+        }
+
+        if (col.tag == "deadzone")
+        {
+            isDead = true;
+
+        }
     }
     void Update()
     {
@@ -74,6 +97,7 @@ public class enemyScript : MonoBehaviour
             }
             
             transform.position = new Vector3(startPos.x + 25, startPos.y, startPos.z);
+            transform.rotation = startRot;
             speed = speed * 1.1f;
             moveLeft.speed = moveLeft.speed*1.1f;
             kills++;
@@ -87,6 +111,7 @@ public class enemyScript : MonoBehaviour
         {
 
             transform.position = new Vector3(startPos.x+25, startPos.y , startPos.z);
+            transform.rotation = startRot;
         }
 
     }

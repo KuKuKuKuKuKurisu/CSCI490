@@ -11,9 +11,9 @@ public class Menu : MonoBehaviour {
     public GameObject pauseButton;
     public GameObject resumeButton;
     public Text score = null;
-    public Text text;
-   
-    public Text text1;
+    public GameObject left;
+    public GameObject right;
+    public static int lorr;
 
     public GameObject restartButton;
     // Update is called once per frame
@@ -21,6 +21,7 @@ public class Menu : MonoBehaviour {
     private void Start()
     {
         score.text = "0";
+        lorr = Random.Range(0, 2);
     }
 
     void Update () {
@@ -35,7 +36,7 @@ public class Menu : MonoBehaviour {
             Pause();
         }
 
-        popUpText();
+        goLorR();
         
 	}
 
@@ -93,21 +94,17 @@ public class Menu : MonoBehaviour {
     {
         Application.Quit();
     }
-    public void popUpText()
+    public void goLorR()
     {
-        if (enemyScript.kills > 0)
+        if (lorr == 1)
         {
-
-            if (enemyScript.kills % 2 == 0)
-            {
-                text.text = "+1 ENERGY";
-                text1.text = "";
-            }
-            else
-            {
-                text1.text = "+1 ENERGY";
-                text.text = "";
-            }
+            right.SetActive(false);
+            left.SetActive(true);
+        }
+        else
+        {
+            left.SetActive(false);
+            right.SetActive(true);
         }
         
     }

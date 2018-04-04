@@ -288,6 +288,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\enemy resourse\_Complete-Game\MobileInput\Scripts\Editor\CrossPlatformInputInitialize.cs" />
     <Compile Include="Assets\enemy resourse\PostProcessing\Editor\Attributes\PostProcessingModelEditorAttribute.cs" />
     <Compile Include="Assets\enemy resourse\PostProcessing\Editor\Models\AmbientOcclusionModelEditor.cs" />
     <Compile Include="Assets\enemy resourse\PostProcessing\Editor\Models\AntialiasingModelEditor.cs" />
