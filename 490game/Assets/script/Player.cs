@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private CharacterController controller;
-
+    private Vector3 startPos;
+    private Quaternion startRot;
     public Animator anim;
     public static int MP = 5;
     public static bool playerIsDead = false;
@@ -15,6 +16,8 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        startPos = transform.position;
+        startRot = transform.rotation;
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
     }
@@ -23,14 +26,18 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "enemy" && MP >= 0&& !enemyScript.dead)
+        if (col.tag == "enemy" && MP >= 0)
         {
             anim.Play("Dead");
+            FindObjectOfType<audioManager>().Play("playerDeath");
             playerIsDead = true;
         }
         if (col.tag == "deadzone")
         {
+
+            transform.position = new Vector3(startPos.x, startPos.y, startPos.z);
             anim.Play("Dead");
+            FindObjectOfType<audioManager>().Play("playerDeath");
             playerIsDead = true;
         }
     }
@@ -54,28 +61,15 @@ public class Player : MonoBehaviour
 
         Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
         controller.Move(moveVector * Time.deltaTime);
-    
-        if (Input.GetMouseButtonDown(0))
-        {
-            MP--;
-            int action = Random.Range(0, 2);
-            if (action == 0)
-            {
-                anim.Play("Attack01");
-            }
-            if (action == 1)
-            {
-                anim.Play("Attack02");
-            }
-            
-        }
 
-        
 
-        if (Player.playerIsDead || Player.MP <= 0)
+
+        if (MP < 0)
         {
             anim.Play("Dead");
+            FindObjectOfType<audioManager>().Play("playerDeath");
+            playerIsDead = true;
         }
 
-    }
+     }
 }

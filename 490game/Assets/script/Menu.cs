@@ -14,6 +14,7 @@ public class Menu : MonoBehaviour {
     public GameObject left;
     public GameObject right;
     public static int lorr;
+    public GameObject dieText;
 
     public GameObject restartButton;
     // Update is called once per frame
@@ -26,17 +27,18 @@ public class Menu : MonoBehaviour {
 
     void Update () {
 
+        goLorR();
+
         score.text = enemyScript.kills.ToString();
 
         if (Player.playerIsDead||Player.MP <0)
         {
-            Player.playerIsDead = true;
             enemyScript.speed = 0f;
             moveLeft.speed = 0f;
             Pause();
         }
 
-        goLorR();
+        
         
 	}
 
@@ -53,13 +55,15 @@ public class Menu : MonoBehaviour {
     public void reStart()
     {
         enemyScript.kills = 0;
+        isPaused = false;
         Player.playerIsDead = false;
         enemyScript.speed = 2f;
         moveLeft.speed = 2f;
         Player.MP = 5;
         Time.timeScale = 1f;
-        SceneManager.LoadScene("version1.0");
+        SceneManager.LoadScene("leapmotion");
         restartButton.SetActive(false);
+        dieText.SetActive(false);
     }
 
     public void Pause()
@@ -69,6 +73,7 @@ public class Menu : MonoBehaviour {
             pauseMenuUI.SetActive(true);
             resumeButton.SetActive(false);
             restartButton.SetActive(true);
+            dieText.SetActive(true);
             pauseButton.SetActive(false);
             Time.timeScale = 1f;
             isPaused = true;
@@ -78,6 +83,7 @@ public class Menu : MonoBehaviour {
             
             pauseMenuUI.SetActive(true);
             restartButton.SetActive(false);
+            dieText.SetActive(false);
             pauseButton.SetActive(false);
             Time.timeScale = 0f;
             isPaused = true;

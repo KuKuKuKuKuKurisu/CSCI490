@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/mainmenu.unity
     guid: 11918c7b60653984a864c037a61865f0
   - enabled: 1
-    path: Assets/version1.0.unity
-    guid: 681eb86c4818beb4db892bc38b15a4a6
+    path: Assets/leapmotion.unity
+    guid: e97e5c56326797c41be5a618cde4727a

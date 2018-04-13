@@ -6,7 +6,7 @@ public class moveLeft : MonoBehaviour {
 
     public static float speed = 2f;
 
-    private float randomOffset = 2f;
+    private float randomOffset = 0f;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +19,7 @@ public class moveLeft : MonoBehaviour {
         if (transform.position.x <= -25)
         {
             float randomHeight = UnityEngine.Random.Range(0, randomOffset);
-            transform.position = new Vector3(50 + randomHeight, transform.position.y, transform.position.z);
+            transform.position = new Vector3(75 + randomHeight, transform.position.y, transform.position.z);
         }
 	}
 }

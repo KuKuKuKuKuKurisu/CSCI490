@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour {
+    
 
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+  
+    void Update () {
 		
 	}
 
@@ -24,6 +25,6 @@ public class mainMenu : MonoBehaviour {
         Time.timeScale = 1f;
         enemyScript.speed = 2f;
         moveLeft.speed = 2f;
-        SceneManager.LoadScene("version1.0");
+        SceneManager.LoadScene("leapmotion");
     }
 }
