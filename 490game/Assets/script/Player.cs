@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "enemy" && MP >= 0)
+        if (col.tag == "enemy")
         {
             anim.Play("Dead");
             FindObjectOfType<audioManager>().Play("playerDeath");

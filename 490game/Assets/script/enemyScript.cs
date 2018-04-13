@@ -14,7 +14,7 @@ public class enemyScript : MonoBehaviour
     private bool wrongplace;
     private bool getpoint;
     public static int kills = 0;
-    private float distance = 20f;
+    private float distance = 30f;
     void Start()
     {
         startPos = transform.position;
@@ -75,41 +75,37 @@ public class enemyScript : MonoBehaviour
         transform.position += Time.deltaTime * speed * Vector3.left;
         if (getpoint)
         {
+            kills++;
             Menu.lorr = Random.Range(0, 2);
             isDead = true;
-            
-            kills++;
             getpoint = false;
             
         }
         if (wrongplace)
         {
+            Player.MP--;
             Menu.lorr = Random.Range(0, 2);
             isDead = true;
-            
-            Player.MP--;
             wrongplace = false;
             
         }
        
         if (isDead)
         {
-            FindObjectOfType<audioManager>().Play("enemyDeath");
             transform.position = new Vector3(startPos.x + distance, 10.6f, startPos.z);
             rigid.velocity = new Vector3(0f, 0f, 0f);
-            distance -= 10f;
-            if (distance == -10f)
+            distance -= 15f;
+            if (distance == -15f)
             {
-                distance = 20f;
+                distance = 30f;
             }
             transform.rotation = startRot;
-            speed = speed * 1.3f;
-            moveLeft.speed = moveLeft.speed * 1.3f;
-            
+            speed = speed * 1.05f;
+            moveLeft.speed = moveLeft.speed * 1.05f;
             isDead = false;
-           
-           
-            
+
+
+
         }
 
         
